@@ -9,7 +9,11 @@
 
 # 示例：
 # 假设你的模块在 /data/local/tmp 创建了一些临时文件，你可以在这里删除它们：
-rm -rf /data/local/tmp/my_module_temp_files
+#rm -rf /data/local/tmp/my_module_temp_files
+
+umount /system/bin/部落冲突防tp
+rm -f /system/bin/部落冲突防tp
+
 
 # 如果你的模块启动了某些服务，你可以在这里停止它们：
 # 假设你的服务名为 my_module_service
