@@ -1,9 +1,20 @@
 # 可选文件
 # 这个脚本将会在 post-fs-data 模式下运行
 
-MODDIR=${0%/*}
+#MODDIR=${0%/*}
 # 绑定挂载二进制文件
-mount -o bind $MODDIR/system/bin/部落冲突防tp /system/bin/部落冲突防tp
+#mount -o bind $MODDIR/system/bin/部落冲突防tp /system/bin/部落冲突防tp
+MODDIR=${0%/*}
+BIN_SOURCE="$MODDIR/system/bin/部落冲突防tp"
+BIN_TARGET="/system/bin/部落冲突防tp"
+
+# 检查源文件是否存在
+if [ -f "$BIN_SOURCE" ]; then
+  mount -o bind "$BIN_SOURCE" "$BIN_TARGET"
+  echo "[$(date)] 挂载成功" >> $MODDIR/log.txt
+else
+  echo "[$(date)] 错误：$BIN_SOURCE 不存在" >> $MODDIR/log.txt
+fi
 
 # 
 # 说明:
