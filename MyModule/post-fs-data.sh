@@ -1,5 +1,10 @@
 # 可选文件
 # 这个脚本将会在 post-fs-data 模式下运行
+
+MODDIR=${0%/*}
+# 绑定挂载二进制文件
+mount -o bind $MODDIR/system/bin/部落冲突防tp /system/bin/部落冲突防tp
+
 # 
 # 说明:
 # post-fs-data.sh 是一个可选的启动脚本文件，它将在 post-fs-data 模式下运行。
