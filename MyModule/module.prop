@@ -1,7 +1,7 @@
-id=SystemlessShaker
-name=SystemlessShaker
+id=zygisk_bl_TP
+name=部落冲突防TP
 version=0.0.0
-versionCode=2025031501
-author=LIghtJUNction
-description=基于ZygiskNext 修改加速度传感器数据实现模拟摇动
-updateJson=http://raw.githubusercontent.com/LIghtJUNction/RootManage-Module-Model/main/update.json
+versionCode=2025052301
+author=By小雨
+description=虚拟机部落冲突防腾讯TP检测
+updateJson=http://raw.githubusercontent.com/Bufan115/RootManage-Module-Model/main/update.json
