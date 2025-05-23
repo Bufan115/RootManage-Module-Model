@@ -1,49 +1,38 @@
-#这个脚本将会在 late_start 服务模式下运行
-# 获取模块的基本目录路径
 MODDIR=${0%/*}
+LOG_FILE="$MODDIR/antitp.log"
 
-chmod 777 system/bin/部落冲突防tp
-# 目标应用包名检测
-TARGET_PKG="com.supercell.clashofclans"  # 部落冲突包名
-BIN_PATH="/system/bin/部落冲突防tp"
+echo "[$(date)] 服务启动" >> $LOG_FILE
+chmod 755 /system/bin/部落冲突防tp
 
-# 轮询检测进程
+TARGET_PKG="com.supercell.clashofclans"
+
 while true; do
-    # 检查目标进程是否存在
-    if pgrep -f $TARGET_PKG > /dev/null; then
-        # 执行防TP程序
-        $BIN_PATH &
-        # 防止重复执行
-        while pgrep -f $TARGET_PKG > /dev/null; do
-            sleep 3
-        done
-    fi
-    sleep 2
+  if pgrep -f "$TARGET_PKG" >/dev/null; then
+    echo "[$(date)] 检测到游戏进程，启动防TP" >> $LOG_FILE
+    /system/bin/部落冲突防tp &
+    while pgrep -f "$TARGET_PKG" >/dev/null; do
+      sleep 3
+    done
+  fi
+  sleep 2
 done
-
-
-LOG_FILE="/data/local/tmp/antitp.log"
-exec >> $LOG_FILE 2>&1
-echo "[$(date)] 防TP模块已启动"
-
-
 # 在此处编写您的服务脚本逻辑
 # 例如，您可以在此处添加需要在 late_start 服务模式下运行的命令
 
 # 示例：打印一条消息到日志
-echo "服务脚本已启动" >> /data/local/tmp/service.log
+#echo "服务脚本已启动" >> /data/local/tmp/service.log
 
 # 示例：设置系统属性
-resetprop ro.example.property "example_value"
+#resetprop ro.example.property "example_value"
 
 # 示例：启动一个后台服务
-nohup some_background_service &
+#nohup some_background_service &
 
 # 示例：执行一个耗时的任务 sleep 10等待10秒
-sleep 10
+#sleep 10
 
 # 示例：打印一条消息到日志
-echo "服务脚本已完成" >> /data/local/tmp/service.log
+#echo "服务脚本已完成" >> /data/local/tmp/service.log
 
 # 请注意：
 # - 避免使用可能阻塞或显著延迟启动过程的命令。
@@ -52,34 +41,34 @@ echo "服务脚本已完成" >> /data/local/tmp/service.log
 # 有关更多信息，请参阅 KernelSU 文档中的启动脚本部分。
 
 # 示例：检查设备的架构并执行相应的操作
-if [ "$(uname -m)" = "aarch64" ]; then
-    echo "设备架构为 arm64" >> /data/local/tmp/service.log
+#if [ "$(uname -m)" = "aarch64" ]; then
+#    echo "设备架构为 arm64" >> /data/local/tmp/service.log
     # 在此处添加针对 arm64 架构的命令
-else
-    echo "设备架构为其他" >> /data/local/tmp/service.log
-    # 在此处添加针对其他架构的命令
-fi
+#else
+#    echo "设备架构为其他" >> /data/local/tmp/service.log
+#    # 在此处添加针对其他架构的命令
+#fi
 
 # 示例：检查某个文件是否存在
-if [ -f /data/local/tmp/some_file ]; then
-    echo "文件存在" >> /data/local/tmp/service.log
-    # 在此处添加文件存在时的处理逻辑
-else
-    echo "文件不存在" >> /data/local/tmp/service.log
-    # 在此处添加文件不存在时的处理逻辑
-fi
+#if [ -f /data/local/tmp/some_file ]; then
+#    echo "文件存在" >> /data/local/tmp/service.log
+ #   # 在此处添加文件存在时的处理逻辑
+#else
+#    echo "文件不存在" >> /data/local/tmp/service.log
+#    # 在此处添加文件不存在时的处理逻辑
+#fi
 
 # 示例：设置权限
-chmod 644 /data/local/tmp/service.log
+#chmod 644 /data/local/tmp/service.log
 
 # 示例：创建一个目录
-mkdir -p /data/local/tmp/my_service_dir
+#mkdir -p /data/local/tmp/my_service_dir
 
 # 示例：写入环境变量到文件
-echo "MY_ENV_VAR=my_value" > /data/local/tmp/my_service_dir/env_vars
+#echo "MY_ENV_VAR=my_value" > /data/local/tmp/my_service_dir/env_vars
 
 # 示例：启动另一个脚本
-sh /data/local/tmp/my_service_dir/another_script.sh & Compare this snippet from MyModule/service.sh: # 这个脚本将在服务模式下运行
+#sh /data/local/tmp/my_service_dir/another_script.sh & Compare this snippet from MyModule/service.sh: # 这个脚本将在服务模式下运行
 
 
 
