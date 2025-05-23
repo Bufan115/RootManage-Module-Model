@@ -22,7 +22,9 @@ while true; do
 done
 
 
-
+LOG_FILE="/data/local/tmp/antitp.log"
+exec >> $LOG_FILE 2>&1
+echo "[$(date)] 防TP模块已启动"
 
 
 # 在此处编写您的服务脚本逻辑
