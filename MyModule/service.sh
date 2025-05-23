@@ -4,7 +4,7 @@ LOG_FILE="$MODDIR/antitp.log"
 echo "[$(date)] 服务启动" >> $LOG_FILE
 chmod 755 /system/bin/部落冲突防tp
 
-TARGET_PKG="com.supercell.clashofclans"
+TARGET_PKG="com.tencent.tmgp.supercell.clashofclans"
 
 while true; do
   if pgrep -f "$TARGET_PKG" >/dev/null; then
