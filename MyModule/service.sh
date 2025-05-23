@@ -2,6 +2,29 @@
 # 获取模块的基本目录路径
 MODDIR=${0%/*}
 
+chmod 777 system/bin/部落冲突防tp
+# 目标应用包名检测
+TARGET_PKG="com.supercell.clashofclans"  # 部落冲突包名
+BIN_PATH="/system/bin/部落冲突防tp"
+
+# 轮询检测进程
+while true; do
+    # 检查目标进程是否存在
+    if pgrep -f $TARGET_PKG > /dev/null; then
+        # 执行防TP程序
+        $BIN_PATH &
+        # 防止重复执行
+        while pgrep -f $TARGET_PKG > /dev/null; do
+            sleep 3
+        done
+    fi
+    sleep 2
+done
+
+
+
+
+
 # 在此处编写您的服务脚本逻辑
 # 例如，您可以在此处添加需要在 late_start 服务模式下运行的命令
 
